@@ -1,0 +1,10 @@
+.form-container {
+  width: 250px;
+  clear: both;
+}
+
+.form-container input {
+  width: 100%;
+  clear: both;
+  margin: 10px;
+}

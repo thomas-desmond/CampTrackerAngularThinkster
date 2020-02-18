@@ -1,0 +1,21 @@
+<div>
+    <form class="form-container">
+        <div>
+            <label for="id">Id</label>
+            <input name="id" type="number" [(ngModel)]="newCamp.id"/>
+        </div>
+        <div>
+            <label for="name-input">Name</label>
+            <input name="campName" [(ngModel)]="newCamp.name"/>
+        </div>
+        <div>
+            <label for="campsite-number">Campsite Number</label>
+            <input type="number" name="campNumber"[(ngModel)]="newCamp.campsiteNumber" />
+        </div>        
+        <div>
+            <label for="notes">Notes</label>
+            <input type="notes" name="notes"[(ngModel)]="newCamp.notes" />
+        </div>
+        <button type="button"(click)="addOrUpdateCampRecord()">Save</button>
+    </form>
+</div>
