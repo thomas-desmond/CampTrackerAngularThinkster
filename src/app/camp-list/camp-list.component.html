@@ -1,4 +1,5 @@
 <p>camp-list works!</p>
 <li *ngFor="let camp of campList$ | async">
     Id: {{camp.id}} Name: {{camp.name}}  Campsite Number: {{camp.campsiteNumber}}
+    <button (click)="deleteCamp(camp.id)">X</button>
 </li>

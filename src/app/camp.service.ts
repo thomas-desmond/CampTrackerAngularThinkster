@@ -41,4 +41,11 @@ export class CampService {
     }
     )
   }
+
+  public remove(campIdToDelete: number) {
+    this.httpClient.delete('https://localhost:44316/api/camps' + '/' + campIdToDelete).subscribe(() => {
+      let newCampList = this.campBehaviorSubject.getValue().filter(camp => camp.id !== campIdToDelete);
+      this.campBehaviorSubject.next(newCampList);
+    })
+  }
 }
