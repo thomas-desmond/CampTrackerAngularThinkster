@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, of, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { Camp } from './shared/models/camp.model';
 
 @Injectable({
@@ -15,10 +16,21 @@ export class CampService {
   }
 
   public get() {
-    this.httpClient.get<Camp[]>('https://localhost:44316/api/camps').subscribe((responseData =>
-    {
-      this.campBehaviorSubject.next(responseData);
-    }));
+    this.httpClient.get<Camp[]>('https://localhost:44316/api/camps')
+      .pipe(
+        catchError(error => {
+          console.log('Error caught', error);
+          return throwError(error);
+        })
+      )
+      .subscribe(
+        success => {
+          console.log('Success case called');
+          this.campBehaviorSubject.next(success)
+        },
+        error => console.log('Error in subscribe', error),
+        () => console.log('Subscribe complete')
+      );
   }
 
   public add(campToAdd: Camp) {
